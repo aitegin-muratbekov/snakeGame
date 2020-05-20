@@ -1,7 +1,6 @@
 class Snake {
   // State
-  final int COLOUR = 0xFFC3C610;
-  final int DEAD_COLOUR = 0xFFED1F1F;
+  final int COLOUR = 0xFFD3B717;
   final int SCORE_COLOUR = 255;
   final int POINTS_SIZE = 30;
   final int MARGIN_TOP = POINTS_SIZE / 2;
@@ -117,37 +116,40 @@ class Snake {
         }
         goldApple = new GoldApple();
         snake.appleCount = 0;
+      } else if (crab.isColliding(nextX, nextY)) {
+        alive = false;
+        state = DEATH_STATE;
+        loseSound.play();
+        loseSound.rewind(); 
       } else {      
         head = (head + 1) % length;
         x[head] = nextX;
         y[head] = nextY;
-    }
-  } else {
-    alive = false;
-    colour = DEAD_COLOUR;
-  }
-}
-
-
-void draw() {
-  noStroke();
-  fill(colour);
-  
-  for (int i = 0; i < length; i++) {
-    int pixelX = centeringShiftX + x[i] * cellPixelSize;
-    int pixelY = centeringShiftY + y[i] * cellPixelSize;
-    if (i != head) {
-      rect(pixelX, pixelY, cellPixelSize, cellPixelSize);
+      }
     } else {
-      rect(pixelX, pixelY, cellPixelSize, cellPixelSize);      
+      alive = false;
+      state = DEATH_STATE;
+      loseSound.play();
+      loseSound.rewind();
+    }
+  }
+
+
+  void draw() {
+    noStroke();
+    fill(colour);
+
+    for (int i = 0; i < length; i++) {
+      int pixelX = centeringShiftX + x[i] * cellPixelSize;
+      int pixelY = centeringShiftY + y[i] * cellPixelSize;
+        rect(pixelX, pixelY, cellPixelSize, cellPixelSize);
     }
   } 
-} 
 
-void drawPoints() {
-  fill(SCORE_COLOUR);
-  textAlign(CENTER, CENTER);
-  textSize(POINTS_SIZE);
-  text("Points: " + points, width / 2, MARGIN_TOP);
-}
+  void drawPoints() {
+    fill(SCORE_COLOUR);
+    textAlign(CENTER, CENTER);
+    textSize(POINTS_SIZE);
+    text("Points: " + points, width / 2, MARGIN_TOP);
+  }
 }  

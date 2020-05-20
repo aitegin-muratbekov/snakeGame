@@ -24,6 +24,7 @@ class Field {
         int pixelX = centeringShiftX + x * cellPixelSize;
         int pixelY = centeringShiftY + y * cellPixelSize;     
         rect(pixelX, pixelY, cellPixelSize, cellPixelSize);
+        image(grass, pixelX, pixelY, cellPixelSize, cellPixelSize);
       }
     }
   }

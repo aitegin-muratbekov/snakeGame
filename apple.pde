@@ -18,7 +18,7 @@ class Apple {
   void draw() {
     stroke(0);
     fill(COLOR);
-    
+
     int pixelX = centeringShiftX + x * cellPixelSize;
     int pixelY = centeringShiftY + y * cellPixelSize;
     image(appleImage, pixelX, pixelY, cellPixelSize, cellPixelSize);

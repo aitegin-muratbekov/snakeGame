@@ -20,11 +20,11 @@ class GoldApple {
       stroke(255);
       fill(0);
       rect(50, 500, 403, 50);
-      
+
       noStroke();
       fill(255, 0, 0);
       rect(52, 502, time, 48);
-      
+
       stroke(0);
       fill(COLOR);
       int pixelX = centeringShiftX + x * cellPixelSize;
@@ -32,7 +32,7 @@ class GoldApple {
       image(gApple, pixelX, pixelY, cellPixelSize, cellPixelSize);
     } else if (time >= 70) {
       snake.appleCount = 0;
-      time = 0;      
+      time = 0;
     }
   }
 }
